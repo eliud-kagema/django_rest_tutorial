@@ -1,5 +1,6 @@
 from snippet.models import Snippet
 from snippet.serializers import SnippetSerializer
+from snippet.serializers import UserSerializer
 from rest_framework import mixins
 from rest_framework import generics
 
