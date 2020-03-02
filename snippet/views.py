@@ -21,6 +21,18 @@ def api_root(request, format=None):
     })
 
 
+from rest_framework import renderers
+from rest_framework.response import Response
+
+class SnippetHighlight(generics.GenericAPIView):
+    queryset = Snippet.objects.all()
+    renderer_classes = [renderers.StaticHTMLRenderer]
+
+    def get(self, request, *args, **kwargs):
+        snippet = self.get_object()
+        return Response(snippet.highlighted)
+
+
 
 class SnippetList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Snippet.objects.all()
